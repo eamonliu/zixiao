@@ -1,0 +1,272 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "project": "紫霄雷霆 (Zixiao Leiting) — vertical pixel shmup",
+  "generatedFrom": "src/systems/art.ts",
+  "artDirection": "Early-1990s Japanese hardcore arcade sci-fi vertical shoot-'em-up (STG) pixel art — Toaplan / Raiden / Compile-Aleste / Technosoft / early CAVE lineage. Gritty military-industrial mechanical sci-fi. NO Chinese-mythology / fantasy / creature motifs in any sprite. Chinese elements appear ONLY as theme text (title screen + ship-select names) rendered in bold, unrestrained Chinese calligraphy — see the 'typography' section. Ship Chinese names are flavor labels only and must not influence sprite shape.",
+  "note": "Machine-readable asset index for regenerating art via text-to-image and swapping later. Keep each TEX key UNCHANGED on replacement so no entity/scene code needs editing. Deliver PNG-32 (alpha) into art/incoming/<file> (calligraphy into art/incoming/text/). nativeSize = current runtime px (also the on-screen footprint). recommendedImport = aspect-preserved delivery size (~2-4x). Full prompts and the global style suffix / negative prompt are in ART_ASSETS.md.",
+  "globalStyleSuffix": "top-down view, single subject centered with even padding, isolated on a transparent background, early-1990s Japanese arcade vertical shoot-'em-up pixel art, detailed 16-bit hand-pixeled sprite, gritty military-industrial sci-fi war machine, metallic hull with rivets and panel lines, punchy limited palette, dithered shading, sharp readable silhouette, dramatic neon energy accents, game sprite, no text, no logo, no watermark",
+  "negativePrompt": "text, letters, numbers, watermark, signature, logo, UI, HUD, frame, border, background scenery, ground, horizon, baked drop shadow, photorealistic, 3D render, smooth vector, cel-shaded cartoon, chibi, cute, kawaii, anime character, fantasy, medieval, dragon, phoenix, mythical creature, beast, feathers, ornament, calligraphy, Chinese pattern, blurry, low contrast, jpeg artifacts, multiple objects, duplicated subject, cropped, out of frame, perspective view, 3/4 view, isometric",
+  "palette": {
+    "bg0": "#05060f", "bg1": "#0a1330", "bg2": "#132257", "star": "#9fe9ff",
+    "playerHull": "#8fe7ff", "playerHullDark": "#2f7fb8", "playerCockpit": "#fff3b0", "playerFlame": "#ff7b3d", "playerShot": "#bff4ff",
+    "ship2Hull": "#ff6f5c", "ship2HullDark": "#9c2f2a",
+    "ship3Hull": "#ffd24d", "ship3HullDark": "#a6791a",
+    "enemyA": "#ff5d73", "enemyADark": "#8c2740",
+    "enemyB": "#ffd166", "enemyBDark": "#9c6f1f",
+    "enemyC": "#b892ff", "enemyCDark": "#5a3aa6",
+    "enemyShot": "#ff8bd0", "enemyShotCore": "#ffe3f4", "enemyShotAimed": "#ff5252",
+    "boss": "#c0c8ff", "bossDark": "#47508f", "bossCore": "#ff4d6d",
+    "powerUp": "#5dff9b", "bombPickup": "#ffe14d", "graze": "#fff7a8", "explosion": "#ffd07a",
+    "hudCyan": "#9fe9ff", "hudPink": "#ff8bd0"
+  },
+  "deliveryDir": "art/incoming/",
+  "assets": [
+    {
+      "key": "tex-player", "const": "TEX.player", "file": "player.png",
+      "name": "青鸾 Qingluan — player ship (blue, light)", "category": "player-ship",
+      "nativeSize": [22, 28], "recommendedImport": [88, 112], "generationCanvas": [1024, 1024],
+      "orientation": "nose-up", "anchor": "center", "transparent": true, "blendMode": "normal", "tileable": false, "priority": "high",
+      "tintable": false,
+      "prompt": "A small fast interceptor starfighter, classic early-90s arcade STG pixel art. Top-down, nose up. Compact angular jet/space-fighter hull, swept wings, cyan/ice-blue metal plating (#8fe7ff) with steel-blue shadows (#2f7fb8), small amber canopy (#fff3b0), twin glowing cyan thrusters with orange flame (#ff7b3d). Lightweight, agile, Raiden/Aleste-style military craft."
+    },
+    {
+      "key": "tex-ship-bifang", "const": "TEX.shipBifang", "file": "ship-bifang.png",
+      "name": "毕方 Bifang — player ship (red, medium)", "category": "player-ship",
+      "nativeSize": [22, 22], "recommendedImport": [88, 88], "generationCanvas": [1024, 1024],
+      "orientation": "nose-up", "anchor": "center", "transparent": true, "blendMode": "normal", "tileable": false, "priority": "high",
+      "tintable": false,
+      "prompt": "A medium all-round gunship starfighter, early-90s arcade STG pixel art. Top-down, nose up. Sturdy broad hull with twin tail fins and side weapon hardpoints, crimson-red plating (#ff6f5c) with dark maroon panels (#9c2f2a), amber canopy, orange engine exhaust. Balanced military space-fighter, Toaplan/Raiden vibe."
+    },
+    {
+      "key": "tex-ship-qiongqi", "const": "TEX.shipQiongqi", "file": "ship-qiongqi.png",
+      "name": "穷奇 Qiongqi — player ship (yellow, heavy)", "category": "player-ship",
+      "nativeSize": [26, 20], "recommendedImport": [104, 80], "generationCanvas": [1024, 1024],
+      "orientation": "nose-up", "anchor": "center", "transparent": true, "blendMode": "normal", "tileable": false, "priority": "high",
+      "tintable": false,
+      "prompt": "A heavy armored assault craft, early-90s arcade STG pixel art. Top-down, nose up. Wide bulky hull, thick armor plating, multiple gun pods and missile racks, gold/amber plating (#ffd24d) with bronze shadows (#a6791a), dual heavy engines with gold glow. Tanky military gunship, MUSHA / Battle-Garegga heavy-bomber vibe."
+    },
+    {
+      "key": "tex-player-shot", "const": "TEX.playerShot", "file": "player-shot.png",
+      "name": "Player bullet (energy tracer)", "category": "bullet",
+      "nativeSize": [6, 10], "recommendedImport": [24, 40], "generationCanvas": [512, 768],
+      "orientation": "up", "anchor": "center", "transparent": true, "blendMode": "normal", "tileable": false, "priority": "medium",
+      "tintable": true,
+      "tintNote": "Recolored per ship at runtime (qingluan cyan-white, bifang orange, qiongqi gold). Keep base cyan-white so tint reads well.",
+      "prompt": "A vertical energy bolt / vulcan tracer round pointing up, 16-bit STG pixel art. Bright cyan-white core (#ffffff) with pale-cyan glow (#bff4ff), elongated capsule, sharp bright tip, hard-edged pixel glow. Clean and readable."
+    },
+    {
+      "key": "tex-enemy-grunt", "const": "TEX.enemyGrunt", "file": "enemy-grunt.png",
+      "name": "Grunt enemy (red)", "category": "enemy",
+      "nativeSize": [26, 20], "recommendedImport": [104, 80], "generationCanvas": [1024, 1024],
+      "orientation": "nose-down", "anchor": "center", "transparent": true, "blendMode": "normal", "tileable": false, "priority": "high",
+      "prompt": "A small mass-produced enemy fighter drone, early-90s arcade STG pixel art. Top-down, nose down toward viewer. Angular military hull, hostile red plating (#ff5d73) with dark crimson panels (#8c2740), single sensor eye, short swept wings. Cheap expendable popcorn enemy."
+    },
+    {
+      "key": "tex-enemy-weaver", "const": "TEX.enemyWeaver", "file": "enemy-weaver.png",
+      "name": "Weaver enemy (yellow)", "category": "enemy",
+      "nativeSize": [22, 22], "recommendedImport": [88, 88], "generationCanvas": [1024, 1024],
+      "orientation": "nose-down", "anchor": "center", "transparent": true, "blendMode": "normal", "tileable": false, "priority": "high",
+      "prompt": "A sleek fast enemy interceptor, 16-bit arcade STG pixel art. Top-down, nose down. Slim dart hull with forward-swept wings, golden-yellow plating (#ffd166) with amber panels (#9c6f1f), glowing white centerline. Agile, weaving."
+    },
+    {
+      "key": "tex-enemy-turret", "const": "TEX.enemyTurret", "file": "enemy-turret.png",
+      "name": "Turret / Carrier enemy (purple)", "category": "enemy",
+      "nativeSize": [18, 18], "recommendedImport": [72, 72], "generationCanvas": [1024, 1024],
+      "orientation": "omni", "anchor": "center", "transparent": true, "blendMode": "normal", "tileable": false, "priority": "high",
+      "reuseNote": "Also used by the 'carrier' enemy preset (same texture).",
+      "prompt": "A stationary armored gun turret / weapons emplacement, 16-bit arcade STG pixel art, top-down, radially symmetric (no clear front). Riveted violet-purple dome (#b892ff) with deep indigo shadows (#5a3aa6), four glowing white emitter ports around a central barrel. Fortified, mechanical."
+    },
+    {
+      "key": "tex-enemy-diver", "const": "TEX.enemyDiver", "file": "enemy-diver.png",
+      "name": "Diver enemy (yellow arrow)", "category": "enemy",
+      "nativeSize": [18, 14], "recommendedImport": [72, 56], "generationCanvas": [1024, 1024],
+      "orientation": "nose-down", "anchor": "center", "transparent": true, "blendMode": "normal", "tileable": false, "priority": "medium",
+      "prompt": "A fast arrow-shaped kamikaze interceptor, 16-bit arcade STG pixel art. Top-down, nose sharply down. Lean pointed hull, yellow (#ffd166)/red (#ff5d73) two-tone plating, bright nose tip, stubby rear fins. High-speed diver."
+    },
+    {
+      "key": "tex-enemy-shot", "const": "TEX.enemyShot", "file": "enemy-shot.png",
+      "name": "Enemy bullet — round orb", "category": "bullet",
+      "nativeSize": [6, 6], "recommendedImport": [24, 24], "generationCanvas": [512, 512],
+      "orientation": "none", "anchor": "center", "transparent": true, "blendMode": "normal", "tileable": false, "priority": "medium",
+      "prompt": "A small round enemy energy orb projectile, 16-bit STG pixel art. Hot pink (#ff8bd0) with bright pale-pink core (#ffe3f4), crisp circular pixel bullet with clean rim. Highly readable on dark background."
+    },
+    {
+      "key": "tex-enemy-shot-aimed", "const": "TEX.enemyShotAimed", "file": "enemy-shot-aimed.png",
+      "name": "Enemy bullet — aimed needle", "category": "bullet",
+      "nativeSize": [6, 10], "recommendedImport": [24, 40], "generationCanvas": [512, 768],
+      "orientation": "down", "anchor": "center", "transparent": true, "blendMode": "normal", "tileable": false, "priority": "medium",
+      "prompt": "A sharp aimed needle/dart projectile pointing down, 16-bit STG pixel art. Vivid red shaft (#ff5252) with white-hot core (#ffe3f4), elongated diamond/needle, fast and menacing. High-contrast, readable."
+    },
+    {
+      "key": "tex-enemy-shot-big", "const": "TEX.enemyShotBig", "file": "enemy-shot-big.png",
+      "name": "Enemy bullet — big plasma orb", "category": "bullet",
+      "nativeSize": [10, 10], "recommendedImport": [40, 40], "generationCanvas": [512, 512],
+      "orientation": "none", "anchor": "center", "transparent": true, "blendMode": "normal", "tileable": false, "priority": "medium",
+      "prompt": "A large heavy enemy plasma orb projectile, 16-bit STG pixel art. Pink energy sphere (#ff8bd0) with layered bright pale-pink core (#ffe3f4), hard pixel rim and slight inner swirl. Dangerous, eye-catching."
+    },
+    {
+      "key": "tex-powerup", "const": "TEX.powerUp", "file": "powerup.png",
+      "name": "Power-up pickup (P, green)", "category": "pickup",
+      "nativeSize": [15, 15], "recommendedImport": [60, 60], "generationCanvas": [512, 512],
+      "orientation": "none", "anchor": "center", "transparent": true, "blendMode": "normal", "tileable": false, "priority": "medium",
+      "prompt": "A glowing power-up pickup item, 16-bit arcade STG pixel art. A rounded emerald-green crystal capsule (#5dff9b) with a bright white 'P' power emblem, dark green inner facets (#0a2a18), crisp pixel highlights and halo. Classic STG item icon."
+    },
+    {
+      "key": "tex-bomb-pickup", "const": "TEX.bombPickup", "file": "bomb-pickup.png",
+      "name": "Bomb pickup (yellow)", "category": "pickup",
+      "nativeSize": [15, 15], "recommendedImport": [60, 60], "generationCanvas": [512, 512],
+      "orientation": "none", "anchor": "center", "transparent": true, "blendMode": "normal", "tileable": false, "priority": "medium",
+      "prompt": "A glowing bomb pickup item, 16-bit arcade STG pixel art. A rounded golden-yellow crystal capsule (#ffe14d) with a bright white bomb/burst emblem, dark amber inner facets (#3a2a05), crisp pixel highlights and halo. Classic STG item icon."
+    },
+    {
+      "key": "tex-boss-1", "const": "TEX.boss1", "file": "boss-1.png",
+      "name": "CRIMSON WARDEN — Stage 1 boss (red)", "category": "boss",
+      "nativeSize": [168, 132], "recommendedImport": [504, 396], "generationCanvas": [2048, 1536],
+      "orientation": "nose-down", "anchor": "center", "transparent": true, "blendMode": "normal", "tileable": false, "priority": "high",
+      "weakpointNote": "Must keep a bright glowing core (#ff4d6d) at bottom-center as the visible weakpoint.",
+      "prompt": "A massive mechanical battleship boss, early-90s arcade STG pixel art. Top-down, wide armored hull pointing down, bilaterally symmetric. Riveted deep-red armor (#ff5d73) with dark crimson plating (#8c2740), two large shoulder weapon turrets with glowing red orbs, heavy panel lines and exhaust vents, central prow cannon, and a bright glowing red-pink core weakpoint (#ff4d6d) at bottom center with white-hot middle. Menacing Toaplan/Raiden-style war machine."
+    },
+    {
+      "key": "tex-boss-2", "const": "TEX.boss2", "file": "boss-2.png",
+      "name": "AZURE LEVIATHAN — Stage 2 boss (blue)", "category": "boss",
+      "nativeSize": [168, 132], "recommendedImport": [504, 396], "generationCanvas": [2048, 1536],
+      "orientation": "nose-down", "anchor": "center", "transparent": true, "blendMode": "normal", "tileable": false, "priority": "high",
+      "weakpointNote": "Must keep a bright glowing core (#ff4d6d) at bottom-center.",
+      "prompt": "A vast mechanical capital-ship boss, early-90s arcade STG pixel art. Top-down, broad armored hull pointing down, symmetric. Steel-blue riveted armor (#c0c8ff) with navy plating (#47508f), ion-cannon arrays and antenna masts, shoulder turrets with glowing blue orbs, vertical spine seam, bright glowing red-pink core weakpoint (#ff4d6d) at bottom center. Colossal military dreadnought."
+    },
+    {
+      "key": "tex-boss-3", "const": "TEX.boss3", "file": "boss-3.png",
+      "name": "VIOLET SOVEREIGN — Stage 3 boss (purple)", "category": "boss",
+      "nativeSize": [168, 132], "recommendedImport": [504, 396], "generationCanvas": [2048, 1536],
+      "orientation": "nose-down", "anchor": "center", "transparent": true, "blendMode": "normal", "tileable": false, "priority": "high",
+      "weakpointNote": "Must keep a bright glowing core (#ff4d6d) at bottom-center.",
+      "prompt": "An enormous mechanical fortress-ship final boss, early-90s arcade STG pixel art. Top-down, heavy layered hull pointing down, symmetric. Violet-purple riveted armor (#b892ff) with deep indigo plating (#5a3aa6), multiple gun turrets and a massive main cannon prow, twin shoulder pods with glowing purple orbs, large bright glowing red-pink core weakpoint (#ff4d6d) at bottom center with white-hot core. Imposing war-fortress, mechanical only, no fantasy ornament."
+    },
+    {
+      "key": "tex-planet-blue", "const": "TEX.planetBlue", "file": "planet-blue.png",
+      "name": "Blue planet — Stage 1 far backdrop", "category": "background-far",
+      "nativeSize": [420, 420], "recommendedImport": [840, 840], "generationCanvas": [2048, 2048],
+      "orientation": "none", "anchor": "center", "transparent": true, "blendMode": "normal", "tileable": false, "priority": "high",
+      "compositionNote": "Disc ~70% of canvas, rest transparent margin for the atmospheric glow.",
+      "prompt": "A giant blue planet from space, 16-bit arcade STG pixel-art backdrop, full disc centered with empty transparent margin. Ocean-blue surface (#2c4a7a), bright lit limb upper-left (#9fc6ff), dark night side fading to black lower-right, dithered cratered terrain, soft glowing blue atmosphere halo (#6fb4ff). Classic STG stage planet."
+    },
+    {
+      "key": "tex-planet-violet", "const": "TEX.planetViolet", "file": "planet-violet.png",
+      "name": "Ringed violet gas giant — Stage 3 far backdrop", "category": "background-far",
+      "nativeSize": [672, 672], "recommendedImport": [1024, 1024], "generationCanvas": [2048, 2048],
+      "orientation": "none", "anchor": "center", "transparent": true, "blendMode": "normal", "tileable": false, "priority": "high",
+      "compositionNote": "Leave wide margin: the tilted ring extends well beyond the disc.",
+      "prompt": "A giant ringed violet gas giant from space, 16-bit arcade STG pixel-art backdrop, full disc centered with wide transparent margin for the ring. Banded purple clouds (#4a2c6a) with dithered shading, bright lit limb upper-left (#d8a0ff), dark side lower-right, tilted Saturn-like pale-violet ring (#c9a8ff) crossing front and behind, soft purple atmosphere glow (#b878ff). Majestic stage backdrop."
+    },
+    {
+      "key": "tex-starship", "const": "TEX.starship", "file": "starship.png",
+      "name": "Capital ship / carrier — Stage 2 far backdrop", "category": "background-far",
+      "nativeSize": [280, 520], "recommendedImport": [560, 1040], "generationCanvas": [1152, 2048],
+      "orientation": "nose-up (engines down toward viewer)", "anchor": "center", "transparent": true, "blendMode": "normal", "tileable": false, "priority": "high",
+      "prompt": "A distant massive capital ship / battle carrier, 16-bit arcade STG pixel art, long vertical silhouette top-down. Prow up, three glowing engine nozzles at the bottom facing the viewer. Pale steel-blue riveted hull (#c0c8ff), dark plating (#47508f), stacked hull sections, panel seams and antenna masts, dozens of tiny warm window lights (#bfe6ff), bright cyan engine glow (#6fd0ff). Imposing industrial warship."
+    },
+    {
+      "key": "tex-nebula", "const": "TEX.nebula", "file": "nebula.png",
+      "name": "Nebula cloud — Stage 2 mid backdrop (additive)", "category": "background-mid",
+      "nativeSize": [256, 256], "recommendedImport": [512, 512], "generationCanvas": [1024, 1024],
+      "orientation": "none", "anchor": "center", "transparent": true, "blendMode": "add", "tileable": false, "priority": "medium",
+      "additiveNote": "Rendered with ADD blend — make it bright-on-black and mostly transparent (glow, not opaque).",
+      "prompt": "A soft glowing space nebula cloud for additive blending (bright on black, mostly transparent), 16-bit STG pixel-art style. Blended blue (#3a78ff) and violet (#9f5dff) gaseous puffs with subtle dithering, faint white star flecks, no hard edges. Ethereal stage haze."
+    },
+    {
+      "key": "tex-asteroid-1", "const": "TEX.asteroid1", "file": "asteroid-1.png",
+      "name": "Asteroid A — Stage 1 mid", "category": "background-mid",
+      "nativeSize": [64, 64], "recommendedImport": [192, 192], "generationCanvas": [768, 768],
+      "orientation": "none", "anchor": "center", "transparent": true, "blendMode": "normal", "tileable": false, "priority": "medium",
+      "prompt": "An irregular rocky asteroid from above, 16-bit arcade STG pixel art, lumpy boulder. Grey-brown stone (#6b5d52), dark crevices (#2a2018), light highlights (#b8a890), dithered impact craters, bright lit edge and shadowed side. Rugged. (Variant: large.)"
+    },
+    {
+      "key": "tex-asteroid-2", "const": "TEX.asteroid2", "file": "asteroid-2.png",
+      "name": "Asteroid B — Stage 1 mid", "category": "background-mid",
+      "nativeSize": [80, 80], "recommendedImport": [240, 240], "generationCanvas": [768, 768],
+      "orientation": "none", "anchor": "center", "transparent": true, "blendMode": "normal", "tileable": false, "priority": "medium",
+      "prompt": "An irregular rocky asteroid from above, 16-bit STG pixel art, distinct from variant A. Grey-brown stone (#5a5048), dark crevices (#241c14), light highlights (#a89880), dithered craters. Rugged. (Variant: largest.)"
+    },
+    {
+      "key": "tex-asteroid-3", "const": "TEX.asteroid3", "file": "asteroid-3.png",
+      "name": "Asteroid C — Stage 1 mid", "category": "background-mid",
+      "nativeSize": [52, 52], "recommendedImport": [156, 156], "generationCanvas": [768, 768],
+      "orientation": "none", "anchor": "center", "transparent": true, "blendMode": "normal", "tileable": false, "priority": "medium",
+      "prompt": "A small irregular rocky asteroid from above, 16-bit STG pixel art, distinct from A/B. Lighter grey-brown stone (#77685a), dark crevices (#2a2018), bright highlights (#c8b8a0), dithered craters. Rugged. (Variant: small.)"
+    },
+    {
+      "key": "tex-debris-1", "const": "TEX.debris1", "file": "debris-1.png",
+      "name": "Ship debris A — Stage 3 mid", "category": "background-mid",
+      "nativeSize": [72, 72], "recommendedImport": [216, 216], "generationCanvas": [768, 768],
+      "orientation": "none", "anchor": "center", "transparent": true, "blendMode": "normal", "tileable": false, "priority": "medium",
+      "prompt": "A jagged chunk of broken warship wreckage from above, 16-bit arcade STG pixel art. Twisted angular hull plating, cold steel-grey (#6a6f7a), dark recesses (#202430), bright metal highlights (#c0d0e0), rivets, panel lines, scorch marks, torn edges. Industrial, damaged. (Variant A.)"
+    },
+    {
+      "key": "tex-debris-2", "const": "TEX.debris2", "file": "debris-2.png",
+      "name": "Ship debris B — Stage 3 mid", "category": "background-mid",
+      "nativeSize": [56, 56], "recommendedImport": [168, 168], "generationCanvas": [768, 768],
+      "orientation": "none", "anchor": "center", "transparent": true, "blendMode": "normal", "tileable": false, "priority": "medium",
+      "prompt": "A jagged warship wreckage chunk from above, 16-bit STG pixel art, burnt reddish plating (#7a5a5a) with dark recesses (#2a1818) and rose highlights (#e0b0b0), rivets, panel lines, scorch marks, torn edges. Industrial, damaged. (Variant B.)"
+    },
+    {
+      "key": "tex-debris-3", "const": "TEX.debris3", "file": "debris-3.png",
+      "name": "Ship debris C — Stage 3 mid", "category": "background-mid",
+      "nativeSize": [64, 64], "recommendedImport": [192, 192], "generationCanvas": [768, 768],
+      "orientation": "none", "anchor": "center", "transparent": true, "blendMode": "normal", "tileable": false, "priority": "medium",
+      "prompt": "A jagged warship wreckage chunk from above, 16-bit STG pixel art, teal-grey plating (#5f6b6a) with dark recesses (#1c2422) and pale highlights (#b8d0cc), rivets, panel lines, scorch, torn edges. Industrial, damaged. (Variant C.)"
+    },
+    {
+      "key": "tex-star-tile-far", "const": "TEX.starTileFar", "file": "star-tile-far.png",
+      "name": "Far starfield tile (parallax, tinted, scrolls)", "category": "background-stars",
+      "nativeSize": [480, 720], "recommendedImport": [480, 720], "generationCanvas": [1024, 1536],
+      "orientation": "none", "anchor": "topleft", "transparent": true, "blendMode": "normal", "tileable": true, "priority": "keep-procedural",
+      "recommendation": "Keep procedural — needs seamless infinite vertical scroll. Replace only if you can guarantee 4-way seamless tiling.",
+      "prompt": "Seamless tileable starfield, sparse tiny white and cyan (#9fe9ff) stars of varied brightness on a fully transparent background, faint, distant. 4-way seamless."
+    },
+    {
+      "key": "tex-star-tile-near", "const": "TEX.starTileNear", "file": "star-tile-near.png",
+      "name": "Near starfield tile (parallax, brighter, scrolls)", "category": "background-stars",
+      "nativeSize": [480, 720], "recommendedImport": [480, 720], "generationCanvas": [1024, 1536],
+      "orientation": "none", "anchor": "topleft", "transparent": true, "blendMode": "normal", "tileable": true, "priority": "keep-procedural",
+      "recommendation": "Keep procedural — needs seamless infinite vertical scroll.",
+      "prompt": "Seamless tileable starfield, denser brighter white/cyan stars (1-2px) on transparent background. 4-way seamless."
+    },
+    {
+      "key": "tex-star-small", "const": "TEX.starSmall", "file": "star-small.png",
+      "name": "Small star dot", "category": "background-stars",
+      "nativeSize": [2, 2], "recommendedImport": [2, 2], "generationCanvas": null,
+      "orientation": "none", "anchor": "center", "transparent": true, "blendMode": "normal", "tileable": false, "priority": "keep-procedural",
+      "recommendation": "Keep procedural (2px dot)."
+    },
+    {
+      "key": "tex-star-big", "const": "TEX.starBig", "file": "star-big.png",
+      "name": "Big star dot", "category": "background-stars",
+      "nativeSize": [3, 3], "recommendedImport": [3, 3], "generationCanvas": null,
+      "orientation": "none", "anchor": "center", "transparent": true, "blendMode": "normal", "tileable": false, "priority": "keep-procedural",
+      "recommendation": "Keep procedural (3px dot)."
+    },
+    {
+      "key": "tex-particle", "const": "TEX.particle", "file": "particle.png",
+      "name": "Generic glow particle (explosions, engine trail, bullet cores)", "category": "fx",
+      "nativeSize": [24, 24], "recommendedImport": [96, 96], "generationCanvas": [256, 256],
+      "orientation": "none", "anchor": "center", "transparent": true, "blendMode": "add", "tileable": false, "priority": "keep-procedural",
+      "recommendation": "Best kept procedural (additive radial glow). If replacing, make a soft circular glow.",
+      "prompt": "A soft radial glow blob: white-hot center fading through warm orange (#ffd07a) to transparent, perfectly circular, additive, no hard edge."
+    }
+  ],
+  "typography": {
+    "note": "The ONLY place Chinese elements appear. Render as bold, unrestrained Chinese calligraphy (wild-cursive / running-cursive 狂草·行草: heavy ink, flying-white, forceful momentum), tuned to sit against the 90s STG metal/neon look (optional thin gold/colored stroke outline + faint glow). DO NOT generate Chinese glyphs with a text-to-image model (it garbles characters). Instead set the text with a calligraphy font in a design tool, or hand-letter / commission, then export transparent PNG. Currently these are rendered as system-font text in MenuScene; replacing them requires swapping that text for these images (a small menu code change, done at replacement time). Deliver into art/incoming/text/.",
+    "items": [
+      { "key": "text-title", "text": "紫霄雷霆", "file": "text/title.png", "use": "title / entry screen main title", "size": [1200, 600], "required": true, "style": "Bold wild-cursive (狂草), heavy ink with flying-white, dynamic diagonal momentum; ink-black or gold-outlined strokes with a faint purple-lightning glow." },
+      { "key": "text-ship-qingluan", "text": "青鸾", "file": "text/ship-qingluan.png", "use": "ship-select ship name", "size": [360, 360], "required": true, "style": "Running-cursive (行草), single subject, optional cyan stroke outline to echo the blue ship." },
+      { "key": "text-ship-bifang", "text": "毕方", "file": "text/ship-bifang.png", "use": "ship-select ship name", "size": [360, 360], "required": true, "style": "Running-cursive, optional red stroke outline." },
+      { "key": "text-ship-qiongqi", "text": "穷奇", "file": "text/ship-qiongqi.png", "use": "ship-select ship name", "size": [360, 360], "required": true, "style": "Running-cursive, optional gold stroke outline." },
+      { "key": "text-select", "text": "选择战机", "file": "text/select.png", "use": "ship-select heading", "size": [700, 220], "required": false, "style": "Running-cursive, lighter weight than the main title." },
+      { "key": "text-sortie", "text": "出击 / 返回", "file": "text/sortie.png, text/back.png", "use": "ship-select buttons", "size": [280, 160], "required": false, "style": "Optional — keep current font or match the calligraphy style." }
+    ]
+  },
+  "optionalExtras": [
+    { "name": "Main menu key art", "use": "menu background", "size": [1280, 1920], "note": "90s arcade-flyer style pixel illustration: a squadron charging into bullet curtains and a giant boss; hardcore sci-fi war feel; NO Chinese-mythology elements." },
+    { "name": "App icon / favicon", "use": "tab/desktop", "size": [512, 512], "note": "Ship silhouette + neon, simple, high recognizability, pure sci-fi." }
+  ]
+}

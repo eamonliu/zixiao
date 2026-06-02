@@ -1,0 +1,20 @@
+{
+  "name": "gradius-shmup",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "A hard-but-fair vertical pixel-art shoot 'em up. Arcade 1CC. Three levels.",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "phaser": "^3.87.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3",
+    "vite": "^6.0.3"
+  }
+}
