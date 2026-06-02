@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "description": "A hard-but-fair vertical pixel-art shoot 'em up. Arcade 1CC. Three levels.",
+  "license": "MIT",
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
