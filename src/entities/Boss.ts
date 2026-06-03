@@ -5,7 +5,7 @@
  * pattern escalates. Defeating the final phase ends the level.
  */
 import Phaser from 'phaser';
-import { GAME_WIDTH } from '../config';
+import { GAME_WIDTH, SPRITE_SCALE } from '../config';
 import { BattleContext, Combatant, FireFn } from './Enemy';
 
 export interface BossPhase {
@@ -53,9 +53,10 @@ export class Boss extends Phaser.GameObjects.Image implements Combatant {
   constructor(scene: Phaser.Scene, def: BossDef) {
     super(scene, GAME_WIDTH / 2, -120, def.texture);
     this.def = def;
-    this.radius = def.radius;
+    this.radius = def.radius * SPRITE_SCALE;
     this.homeX = GAME_WIDTH / 2;
     scene.add.existing(this);
+    this.setScale(SPRITE_SCALE);
     this.setDepth(32);
     this.beginPhase(0);
     this.bossState = 'enter';

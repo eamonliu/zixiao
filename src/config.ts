@@ -114,10 +114,10 @@ export const BULLET = {
 } as const;
 
 /**
- * Readability up-scale for the gameplay sprites (player ship, enemies, all
- * bullets). Applied to BOTH the drawn sprite and its collision radius so a hit
- * lands where the art looks like it should. Backgrounds, bosses and pickups
- * keep their native size. ~1.5–2× reads well on small/tablet screens.
+ * Readability up-scale for the gameplay sprites (player ship, enemies, bosses,
+ * pickups and all bullets). Applied to BOTH the drawn sprite and its collision
+ * radius so a hit lands where the art looks like it should. Only the parallax
+ * backgrounds keep their native size. ~1.5–2× reads well on small/tablet screens.
  */
 export const SPRITE_SCALE = 1.7;
 

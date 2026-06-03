@@ -4,7 +4,7 @@
  * generous rather than fiddly.
  */
 import Phaser from 'phaser';
-import { GAME_HEIGHT, TEX } from '../config';
+import { GAME_HEIGHT, SPRITE_SCALE, TEX } from '../config';
 
 export type PickupKind = 'power' | 'bomb';
 
@@ -14,7 +14,7 @@ const MAGNET_SPEED = 360;
 
 export class Pickup extends Phaser.GameObjects.Image {
   kind: PickupKind = 'power';
-  radius = 14;
+  radius = 14 * SPRITE_SCALE;
   private ageMs = 0;
 
   constructor(scene: Phaser.Scene) {
@@ -31,7 +31,7 @@ export class Pickup extends Phaser.GameObjects.Image {
     this.ageMs = 0;
     this.setActive(true).setVisible(true);
     this.setScale(0);
-    this.scene.tweens.add({ targets: this, scale: 1, duration: 180, ease: 'Back.out' });
+    this.scene.tweens.add({ targets: this, scale: SPRITE_SCALE, duration: 180, ease: 'Back.out' });
   }
 
   deactivate(): void {
@@ -51,7 +51,7 @@ export class Pickup extends Phaser.GameObjects.Image {
       this.x += Math.sin(this.ageMs / 280) * 14 * dt;
     }
     // gentle spin shimmer
-    this.setScale(1 + Math.sin(this.ageMs / 160) * 0.08);
+    this.setScale(SPRITE_SCALE * (1 + Math.sin(this.ageMs / 160) * 0.08));
   }
 
   isOffscreen(): boolean {
