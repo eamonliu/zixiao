@@ -86,7 +86,7 @@ export class Enemy extends Phaser.GameObjects.Image {
     this.nextFireAt = this.fire ? (cfg.fireDelayMs ?? 600) : Infinity;
     this.flashUntil = 0;
     this.setActive(true).setVisible(true);
-    this.setScale(SPRITE_SCALE);
+    this.setScale(1); // texture is pre-baked at SPRITE_SCALE size; radius scaled above
   }
 
   deactivate(): void {

@@ -73,7 +73,9 @@ export class Player extends Phaser.GameObjects.Container {
     this.inputMgr = input;
     this.bullets = bullets;
 
-    this.shipImg = scene.add.image(0, 0, this.ship.texture).setScale(SPRITE_SCALE);
+    // Texture is pre-baked at SPRITE_SCALE size (see scripts/process-art.py), so
+    // it draws at scale 1; SPRITE_SCALE only scales the radius/offsets below.
+    this.shipImg = scene.add.image(0, 0, this.ship.texture);
     this.hitDot = scene.add.circle(0, 0, 2.6, COLORS.hudPink).setVisible(false);
     const core = scene.add.circle(0, 0, 1.2, 0xffffff).setVisible(false);
     this.add([this.shipImg, this.hitDot, core]);

@@ -114,10 +114,14 @@ export const BULLET = {
 } as const;
 
 /**
- * Readability up-scale for the gameplay sprites (player ship, enemies, bosses,
- * pickups and all bullets). Applied to BOTH the drawn sprite and its collision
- * radius so a hit lands where the art looks like it should. Only the parallax
- * backgrounds keep their native size. ~1.5–2× reads well on small/tablet screens.
+ * How much larger than their original "native" design size the gameplay sprites
+ * (player ship, enemies, bosses, pickups, all bullets) are drawn. To stay crisp
+ * this factor is BAKED INTO THE TEXTURES by scripts/process-art.py (each is
+ * generated at native × SPRITE_SCALE straight from the high-res source), so the
+ * sprites render at scale 1 in-game. Code uses SPRITE_SCALE only for the things
+ * that must match that baked size: collision radii and world-space offsets
+ * (engine trail, muzzle). The parallax backgrounds are NOT enlarged.
+ * NOTE: process-art.py reads this exact constant — re-run it if you change this.
  */
 export const SPRITE_SCALE = 1.7;
 

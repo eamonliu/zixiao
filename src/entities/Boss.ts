@@ -56,7 +56,7 @@ export class Boss extends Phaser.GameObjects.Image implements Combatant {
     this.radius = def.radius * SPRITE_SCALE;
     this.homeX = GAME_WIDTH / 2;
     scene.add.existing(this);
-    this.setScale(SPRITE_SCALE);
+    // Texture is pre-baked at SPRITE_SCALE size; draw at scale 1 (radius scaled above).
     this.setDepth(32);
     this.beginPhase(0);
     this.bossState = 'enter';

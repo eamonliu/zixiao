@@ -31,7 +31,8 @@ export class Pickup extends Phaser.GameObjects.Image {
     this.ageMs = 0;
     this.setActive(true).setVisible(true);
     this.setScale(0);
-    this.scene.tweens.add({ targets: this, scale: SPRITE_SCALE, duration: 180, ease: 'Back.out' });
+    // Texture is pre-baked at SPRITE_SCALE size, so the resting scale is 1.
+    this.scene.tweens.add({ targets: this, scale: 1, duration: 180, ease: 'Back.out' });
   }
 
   deactivate(): void {
@@ -50,8 +51,8 @@ export class Pickup extends Phaser.GameObjects.Image {
       this.y += FALL_SPEED * dt;
       this.x += Math.sin(this.ageMs / 280) * 14 * dt;
     }
-    // gentle spin shimmer
-    this.setScale(SPRITE_SCALE * (1 + Math.sin(this.ageMs / 160) * 0.08));
+    // gentle spin shimmer (texture already at display size, so base scale 1)
+    this.setScale(1 + Math.sin(this.ageMs / 160) * 0.08);
   }
 
   isOffscreen(): boolean {
