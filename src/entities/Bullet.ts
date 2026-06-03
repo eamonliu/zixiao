@@ -4,7 +4,7 @@
  * and precise circular-hitbox collision.
  */
 import Phaser from 'phaser';
-import { TEX } from '../config';
+import { SPRITE_SCALE, TEX } from '../config';
 
 export interface BulletOpts {
   vx: number;
@@ -46,7 +46,7 @@ export class Bullet extends Phaser.GameObjects.Image {
     this.grazed = false;
     this.orient = o.orient ?? false;
     this.spin = o.spin ?? 0;
-    this.setScale(o.scale ?? 1);
+    this.setScale((o.scale ?? 1) * SPRITE_SCALE);
     this.setRotation(this.orient ? Math.atan2(o.vy, o.vx) + Math.PI / 2 : 0);
     if (o.tint !== undefined) this.setTint(o.tint);
     else this.clearTint();

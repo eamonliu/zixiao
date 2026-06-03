@@ -114,18 +114,27 @@ export const BULLET = {
 } as const;
 
 /**
+ * Readability up-scale for the gameplay sprites (player ship, enemies, all
+ * bullets). Applied to BOTH the drawn sprite and its collision radius so a hit
+ * lands where the art looks like it should. Backgrounds, bosses and pickups
+ * keep their native size. ~1.5–2× reads well on small/tablet screens.
+ */
+export const SPRITE_SCALE = 1.7;
+
+/**
  * Per-level difficulty scalars applied on top of the wave data (index 0..2 →
  * levels 1..3). These are the master "feel" dials:
  *  - bulletSpeedMul : enemy bullet speed.
  *  - fireRateMul    : how OFTEN enemies/bosses fire. <1 = sparser (less dense).
  *  - enemyHpMul     : popcorn enemy HP (bosses are tuned separately).
- * Tuned down from a stricter baseline so stage 1 is approachable while the
- * level-to-level ramp is preserved.
+ * Flat across all three stages: levels 2 and 3 use the same approachable
+ * scaling as level 1 (their stage identity comes from formations & bosses,
+ * not from harsher bullet speed / fire rate / enemy HP).
  */
 export const DIFFICULTY = {
-  bulletSpeedMul: [0.95, 1.06, 1.2],
-  fireRateMul: [0.85, 1.0, 1.15],
-  enemyHpMul: [0.8, 1.0, 1.2],
+  bulletSpeedMul: [0.95, 0.95, 0.95],
+  fireRateMul: [0.85, 0.85, 0.85],
+  enemyHpMul: [0.8, 0.8, 0.8],
 } as const;
 
 /** Texture keys produced by the procedural art system. Centralised to avoid typos. */

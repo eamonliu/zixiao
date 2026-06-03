@@ -5,6 +5,7 @@
  * in systems/patterns.ts and the level data picks from them.
  */
 import Phaser from 'phaser';
+import { SPRITE_SCALE } from '../config';
 import { BulletPool } from './Bullet';
 
 export type DropKind = 'none' | 'power' | 'bomb';
@@ -72,7 +73,7 @@ export class Enemy extends Phaser.GameObjects.Image {
     this.setPosition(x, y);
     this.clearTint();
     this.hp = this.maxHp = cfg.hp;
-    this.radius = cfg.radius;
+    this.radius = cfg.radius * SPRITE_SCALE;
     this.score = cfg.score;
     this.drop = cfg.drop ?? 'none';
     this.movement = cfg.movement;
@@ -85,7 +86,7 @@ export class Enemy extends Phaser.GameObjects.Image {
     this.nextFireAt = this.fire ? (cfg.fireDelayMs ?? 600) : Infinity;
     this.flashUntil = 0;
     this.setActive(true).setVisible(true);
-    this.setScale(1);
+    this.setScale(SPRITE_SCALE);
   }
 
   deactivate(): void {

@@ -28,6 +28,8 @@ export function boss1(): BossDef {
 }
 
 export function boss2(): BossDef {
+  // Tuned to level-1 boss intensity (on par with CRIMSON WARDEN), keeping its
+  // spiral identity but with fewer bullets, slower fire and lower HP.
   return {
     texture: TEX.boss2,
     name: 'AZURE LEVIATHAN',
@@ -35,25 +37,28 @@ export function boss2(): BossDef {
     score: 32000,
     phases: [
       {
-        hp: 240,
-        fireIntervalMs: 900,
-        fire: P.combine(P.aimedFan(7, 50, 175), P.ring(8, 110)),
-        swaySpeed: 0.9,
-        swayRange: 140,
+        hp: 175,
+        fireIntervalMs: 1100,
+        fire: P.combine(P.aimedFan(5, 46, 165), P.ring(8, 115)),
+        swaySpeed: 0.8,
+        swayRange: 130,
       },
-      { hp: 300, fireIntervalMs: 120, fire: P.spiral(5, 150, 9), swaySpeed: 1.2, swayRange: 150 },
+      { hp: 210, fireIntervalMs: 150, fire: P.spiral(4, 150, 10), swaySpeed: 1.1, swayRange: 140 },
       {
-        hp: 360,
-        fireIntervalMs: 110,
-        fire: P.combine(P.spiral(3, 165, -14), P.spiral(3, 130, 14)),
-        swaySpeed: 1.5,
-        swayRange: 150,
+        hp: 250,
+        fireIntervalMs: 140,
+        fire: P.combine(P.spiral(3, 150, -11), P.spiral(3, 130, 11)),
+        swaySpeed: 1.3,
+        swayRange: 145,
       },
     ],
   };
 }
 
 export function boss3(): BossDef {
+  // Brought down to level-1 boss intensity (on par with CRIMSON WARDEN): the
+  // dense dual-spiral finale keeps its shape but with far fewer bullets, slower
+  // fire and much lower HP so it is no harder than stage 1.
   return {
     texture: TEX.boss3,
     name: 'VIOLET SOVEREIGN',
@@ -61,25 +66,25 @@ export function boss3(): BossDef {
     score: 50000,
     phases: [
       {
-        hp: 300,
-        fireIntervalMs: 820,
-        fire: P.combine(P.aimedFan(9, 56, 185), P.ring(12, 120)),
-        swaySpeed: 1.0,
+        hp: 180,
+        fireIntervalMs: 1050,
+        fire: P.combine(P.aimedFan(5, 50, 170), P.ring(10, 120)),
+        swaySpeed: 0.9,
+        swayRange: 135,
+      },
+      {
+        hp: 220,
+        fireIntervalMs: 150,
+        fire: P.combine(P.spiral(4, 160, 8), P.aimed(230)),
+        swaySpeed: 1.2,
+        swayRange: 145,
+      },
+      {
+        hp: 250,
+        fireIntervalMs: 140,
+        fire: P.combine(P.spiral(3, 170, -12), P.spiral(3, 150, 12)),
+        swaySpeed: 1.4,
         swayRange: 150,
-      },
-      {
-        hp: 380,
-        fireIntervalMs: 110,
-        fire: P.combine(P.spiral(6, 165, 8), P.aimed(260)),
-        swaySpeed: 1.3,
-        swayRange: 155,
-      },
-      {
-        hp: 460,
-        fireIntervalMs: 95,
-        fire: P.combine(P.spiral(4, 185, -13), P.spiral(4, 150, 13), P.aimedFan(3, 20, 230)),
-        swaySpeed: 1.7,
-        swayRange: 160,
       },
     ],
   };

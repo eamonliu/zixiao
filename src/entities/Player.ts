@@ -7,7 +7,7 @@
  * (velocity) and touch (1:1 relative drag).
  */
 import Phaser from 'phaser';
-import { BULLET, COLORS, GAME_HEIGHT, GAME_WIDTH, PLAY_BOUNDS, PLAYER, TEX } from '../config';
+import { BULLET, COLORS, GAME_HEIGHT, GAME_WIDTH, PLAY_BOUNDS, PLAYER, SPRITE_SCALE, TEX } from '../config';
 import { InputManager } from '../systems/input';
 import { BulletPool } from './Bullet';
 import { audio } from '../systems/audio';
@@ -73,7 +73,7 @@ export class Player extends Phaser.GameObjects.Container {
     this.inputMgr = input;
     this.bullets = bullets;
 
-    this.shipImg = scene.add.image(0, 0, this.ship.texture);
+    this.shipImg = scene.add.image(0, 0, this.ship.texture).setScale(SPRITE_SCALE);
     this.hitDot = scene.add.circle(0, 0, 2.6, COLORS.hudPink).setVisible(false);
     const core = scene.add.circle(0, 0, 1.2, 0xffffff).setVisible(false);
     this.add([this.shipImg, this.hitDot, core]);
@@ -95,7 +95,7 @@ export class Player extends Phaser.GameObjects.Container {
       quantity: 1,
     });
     this.engine.setDepth(39);
-    this.engine.startFollow(this, 0, 14);
+    this.engine.startFollow(this, 0, 14 * SPRITE_SCALE);
 
     this.setInvuln(PLAYER.spawnInvulnMs);
   }
@@ -191,11 +191,11 @@ export class Player extends Phaser.GameObjects.Container {
     const tint = this.ship.shotTint;
     for (const s of shots) {
       const rad = Phaser.Math.DegToRad(s.angle);
-      this.bullets.spawn(this.x + s.dx, this.y - 16, {
+      this.bullets.spawn(this.x + s.dx, this.y - 16 * SPRITE_SCALE, {
         vx: Math.sin(rad) * speed,
         vy: -Math.cos(rad) * speed,
         texture: TEX.playerShot,
-        radius: 5,
+        radius: 5 * SPRITE_SCALE,
         damage: BULLET.playerDamage * this.ship.damageMul,
         orient: s.angle !== 0,
         tint: tint === 0xffffff ? undefined : tint,
