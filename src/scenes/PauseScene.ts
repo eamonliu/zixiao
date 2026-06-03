@@ -26,7 +26,7 @@ export class PauseScene extends Phaser.Scene {
       audio.setMuted(run.muted);
       this.soundLabel?.setText(this.soundText());
     });
-    this.soundLabel = snd.label;
+    this.soundLabel = snd.label as Phaser.GameObjects.Text;
     this.addButton(cx, 424, 'QUIT TO TITLE', () => this.quit());
 
     this.setSelected(0);

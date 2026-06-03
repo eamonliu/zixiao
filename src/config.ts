@@ -163,6 +163,15 @@ export const TEX = {
   debris1: 'tex-debris-1',
   debris2: 'tex-debris-2',
   debris3: 'tex-debris-3',
+
+  // Calligraphy theme text (loaded images that replace the system-font menu text).
+  txtTitle: 'tex-txt-title',
+  txtSelect: 'tex-txt-select',
+  txtShipQingluan: 'tex-txt-ship-qingluan',
+  txtShipBifang: 'tex-txt-ship-bifang',
+  txtShipQiongqi: 'tex-txt-ship-qiongqi',
+  txtSortie: 'tex-txt-sortie',
+  txtBack: 'tex-txt-back',
 } as const;
 
 /** Scene keys. */

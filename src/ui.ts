@@ -31,7 +31,8 @@ export function pixelText(
 }
 
 export interface MenuButton {
-  label: Phaser.GameObjects.Text;
+  /** The clickable node — a Text for word buttons, an Image for calligraphy buttons. */
+  label: Phaser.GameObjects.GameObject;
   setSelected(on: boolean): void;
   readonly onActivate: () => void;
 }
@@ -64,6 +65,38 @@ export function makeButton(
   // Selection highlight is managed by the owning scene so keyboard and pointer
   // stay in sync; here we only wire activation.
   text.on(Phaser.Input.Events.POINTER_UP, () => onActivate());
+
+  return btn;
+}
+
+/**
+ * Like makeButton, but the label is a pre-rendered image (used for the
+ * Chinese calligraphy buttons). Scaled to fit within maxW×maxH, with a
+ * scale/alpha pop on selection.
+ */
+export function makeImageButton(
+  scene: Phaser.Scene,
+  x: number,
+  y: number,
+  textureKey: string,
+  maxW: number,
+  maxH: number,
+  onActivate: () => void,
+): MenuButton {
+  const img = scene.add.image(x, y, textureKey);
+  const base = Math.min(maxW / img.width, maxH / img.height);
+  img.setInteractive({ useHandCursor: true });
+
+  const btn: MenuButton = {
+    label: img,
+    onActivate,
+    setSelected(on: boolean) {
+      img.setScale(on ? base * 1.12 : base);
+      img.setAlpha(on ? 1 : 0.72);
+    },
+  };
+  btn.setSelected(false);
+  img.on(Phaser.Input.Events.POINTER_UP, () => onActivate());
 
   return btn;
 }

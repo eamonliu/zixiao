@@ -1,9 +1,9 @@
 import Phaser from 'phaser';
-import { COLORS, GAME_HEIGHT, GAME_WIDTH, SCENES } from '../config';
+import { COLORS, GAME_HEIGHT, GAME_WIDTH, SCENES, TEX } from '../config';
 import { Starfield } from '../systems/Starfield';
 import { audio } from '../systems/audio';
 import { run, setMuted, setShip, startRun } from '../state';
-import { makeButton, MenuButton, pixelText } from '../ui';
+import { makeButton, makeImageButton, MenuButton, pixelText } from '../ui';
 import { SHIP_AXES, SHIPS, shipIndex } from '../ships';
 
 type Page = 'main' | 'practice' | 'ship';
@@ -20,7 +20,8 @@ export class MenuScene extends Phaser.Scene {
   // Ship-select state.
   private pending = { practice: false, startLevel: 0 };
   private shipSel = 0;
-  private shipNameLabels: Phaser.GameObjects.Text[] = [];
+  private shipNameLabels: Phaser.GameObjects.Image[] = [];
+  private nameBaseScale = 1;
   private shipPreview?: Phaser.GameObjects.Image;
   private shipDesc?: Phaser.GameObjects.Text;
   private radarGfx?: Phaser.GameObjects.Graphics;
@@ -33,10 +34,10 @@ export class MenuScene extends Phaser.Scene {
     this.stars = new Starfield(this, 0);
     this.stars.setTheme(0);
 
-    // Title.
+    // Title — calligraphy image (紫霄雷霆).
     const cx = GAME_WIDTH / 2;
-    const title = pixelText(this, cx, 150, '紫霄雷霆', 56, COLORS.hudCyan);
-    title.setShadow(0, 0, '#3bd6ff', 24, true, true);
+    const title = this.add.image(cx, 150, TEX.txtTitle);
+    title.setScale(this.fit(title, 320, 132));
     this.tweens.add({
       targets: title,
       y: 142,
@@ -86,8 +87,13 @@ export class MenuScene extends Phaser.Scene {
     this.cameras.main.fadeIn(400, 5, 6, 15);
   }
 
-  private titleText?: Phaser.GameObjects.Text;
+  private titleText?: Phaser.GameObjects.Image;
   private hiScoreText?: Phaser.GameObjects.Text;
+
+  /** Scale a fit-to-box helper for calligraphy images (preserves aspect). */
+  private fit(img: Phaser.GameObjects.Image, maxW: number, maxH: number): number {
+    return Math.min(maxW / img.width, maxH / img.height);
+  }
 
   // ---- Menu construction ---------------------------------------------------
 
@@ -134,7 +140,7 @@ export class MenuScene extends Phaser.Scene {
       audio.uiMove();
       if (this.soundLabel) this.soundLabel.setText(this.soundText());
     });
-    this.soundLabel = soundBtn.label;
+    this.soundLabel = soundBtn.label as Phaser.GameObjects.Text;
 
     this.setSelected(0);
     this.refreshHint();
@@ -173,20 +179,30 @@ export class MenuScene extends Phaser.Scene {
     this.shipSel = shipIndex(run.shipId);
     const cx = GAME_WIDTH / 2;
 
-    this.extras.push(pixelText(this, cx, 54, '选 择 战 机', 26, COLORS.hudCyan));
+    // Heading — calligraphy 选择战机.
+    const head = this.add.image(cx, 58, TEX.txtSelect);
+    head.setScale(this.fit(head, 240, 56));
+    this.extras.push(head);
     this.extras.push(
-      pixelText(this, cx, 84, 'SELECT YOUR FIGHTER', 11, 0x6f86a8),
+      pixelText(this, cx, 88, 'SELECT YOUR FIGHTER', 11, 0x6f86a8),
     );
 
-    // Three name tabs.
+    // Three name tabs (calligraphy 青鸾 / 毕方 / 穷奇).
     const tabXs = [cx - 128, cx, cx + 128];
+    const nameTexById: Record<string, string> = {
+      qingluan: TEX.txtShipQingluan,
+      bifang: TEX.txtShipBifang,
+      qiongqi: TEX.txtShipQiongqi,
+    };
     this.shipNameLabels = SHIPS.map((s, i) => {
-      const t = pixelText(this, tabXs[i], 120, s.name, 24, 0xffffff);
-      t.setInteractive({ useHandCursor: true });
-      t.on(Phaser.Input.Events.POINTER_OVER, () => this.selectShip(i));
-      t.on(Phaser.Input.Events.POINTER_DOWN, () => this.selectShip(i));
-      this.extras.push(t);
-      return t;
+      const img = this.add.image(tabXs[i], 124, nameTexById[s.id]);
+      this.nameBaseScale = this.fit(img, 92, 58);
+      img.setScale(this.nameBaseScale);
+      img.setInteractive({ useHandCursor: true });
+      img.on(Phaser.Input.Events.POINTER_OVER, () => this.selectShip(i));
+      img.on(Phaser.Input.Events.POINTER_DOWN, () => this.selectShip(i));
+      this.extras.push(img);
+      return img;
     });
 
     // Ship preview sprite (pixel art scaled up).
@@ -219,9 +235,9 @@ export class MenuScene extends Phaser.Scene {
       pixelText(this, cx, 582, '← →  /  A D  切换战机', 11, 0x6f86a8),
     );
 
-    // Confirm + back buttons.
-    this.addButton(cx, GAME_HEIGHT - 92, '出 击', 28, () => this.confirmShip());
-    this.addButton(cx, GAME_HEIGHT - 46, '返回', 20, () => this.goBack());
+    // Confirm + back buttons (calligraphy 出击 / 返回).
+    this.addImageButton(cx, GAME_HEIGHT - 90, TEX.txtSortie, 150, 60, () => this.confirmShip());
+    this.addImageButton(cx, GAME_HEIGHT - 44, TEX.txtBack, 108, 44, () => this.goBack());
 
     this.setSelected(0);
     this.refreshShip();
@@ -254,11 +270,10 @@ export class MenuScene extends Phaser.Scene {
     const ship = SHIPS[this.shipSel];
 
     // Highlight the active tab.
-    this.shipNameLabels.forEach((t, i) => {
+    this.shipNameLabels.forEach((img, i) => {
       const on = i === this.shipSel;
-      t.setColor(on ? '#ffffff' : '#5d728f');
-      t.setScale(on ? 1.12 : 0.92);
-      t.setShadow(0, 0, on ? '#' + ship.color.toString(16).padStart(6, '0') : '#000000', on ? 16 : 0, true, true);
+      img.setScale(this.nameBaseScale * (on ? 1.18 : 0.9));
+      img.setAlpha(on ? 1 : 0.5);
     });
 
     this.shipPreview?.setTexture(ship.texture);
@@ -329,6 +344,21 @@ export class MenuScene extends Phaser.Scene {
   ): MenuButton {
     const idx = this.buttons.length;
     const btn = makeButton(this, x, y, label, size, onActivate);
+    btn.label.on(Phaser.Input.Events.POINTER_OVER, () => this.setSelected(idx));
+    this.buttons.push(btn);
+    return btn;
+  }
+
+  private addImageButton(
+    x: number,
+    y: number,
+    texKey: string,
+    maxW: number,
+    maxH: number,
+    onActivate: () => void,
+  ): MenuButton {
+    const idx = this.buttons.length;
+    const btn = makeImageButton(this, x, y, texKey, maxW, maxH, onActivate);
     btn.label.on(Phaser.Input.Events.POINTER_OVER, () => this.setSelected(idx));
     this.buttons.push(btn);
     return btn;
